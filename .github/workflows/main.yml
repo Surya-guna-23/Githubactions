@@ -34,12 +34,8 @@ jobs:
       - name: Verify dist folder
         run: ls -la ./accelerator-home-ui/dist
 
-      - name: Commit and Push dist folder
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "github-actions@github.com"
-          git add ./accelerator-home-ui/dist
-          git commit -m "Auto-commit: Add dist folder"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Replaced dist folder auto commit from trigger using stefanz
+          branch: ma
