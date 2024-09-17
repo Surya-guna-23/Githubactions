@@ -41,7 +41,7 @@ jobs:
           if (fbEndpoint) {
               window.__firebolt = window.__firebolt || {}
               window.__firebolt.endpoint = fbEndpoint
-          } </script> " ./dist/es6/index.html
+          } </script> " ./accelerator-home-ui/dist/es6/index.html
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
