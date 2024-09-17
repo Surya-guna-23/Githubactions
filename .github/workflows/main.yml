@@ -34,10 +34,6 @@ jobs:
 
     - name: Commit and Push dist folder
       run: |
-        git config --global user.email "gunasurya23@gmail.com"
-        git config --global user.name "Surya-guna-23"
         git add ./accelerator-home-ui/dist
         git commit -m "Add dist folder"
         git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
