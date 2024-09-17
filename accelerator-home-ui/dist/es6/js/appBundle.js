@@ -3,7 +3,7 @@
  * SDK version: 4.8.3
  * CLI version: 2.14.2
  *
- * Generated: Tue, 17 Sep 2024 04:20:39 GMT
+ * Generated: Tue, 17 Sep 2024 05:29:48 GMT
  */
 
 var APP_accelerator_home_ui = (function () {
@@ -2022,7 +2022,7 @@ var APP_accelerator_home_ui = (function () {
    * limitations under the License.
    */
   let warned = false;
-  const deprecated$1 = function () {
+  const deprecated = function () {
     let force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     if (force === true || warned === false) {
       console.warn(["The 'Locale'-plugin in the Lightning-SDK is deprecated and will be removed in future releases.", "Please consider using the new 'Language'-plugin instead.", 'https://rdkcentral.github.io/Lightning-SDK/#/plugins/language'].join('\n\n'));
@@ -2055,7 +2055,7 @@ var APP_accelerator_home_ui = (function () {
      * @param {String} lang
      */
     setLanguage(lang) {
-      deprecated$1();
+      deprecated();
       this.__enabled = true;
       this.language = lang;
     }
@@ -2066,7 +2066,7 @@ var APP_accelerator_home_ui = (function () {
      * @return {Object}
      */
     get tr() {
-      deprecated$1(true);
+      deprecated(true);
       return this.__trObj[this.language];
     }
 
@@ -2076,7 +2076,7 @@ var APP_accelerator_home_ui = (function () {
      * @param {Object} trObj
      */
     loadFromObject(trObj) {
-      deprecated$1();
+      deprecated();
       const fallbackLanguage = 'en';
       if (Object.keys(trObj).indexOf(this.language) === -1) {
         Log.warn('No translations found for: ' + this.language);
@@ -2617,35 +2617,19 @@ var APP_accelerator_home_ui = (function () {
     });
   };
 
-  var _from = "@lightningjs/sdk@^4.8.1";
-  var _id = "@lightningjs/sdk@4.8.3";
-  var _inBundle = false;
-  var _integrity = "sha512-PeGuMmMi0zYxXtQi/di1f23gHNKZ9nLqDQInGomLiq85iJ8BPhT3vchzbrYlHTxdyRX+iZ5b9PYL4uRUgPSPgQ==";
-  var _location = "/@lightningjs/sdk";
-  var _phantomChildren = {
+  var name$1 = "@lightningjs/sdk";
+  var version$1 = "4.8.3";
+  var license = "Apache-2.0";
+  var scripts = {
+  	postinstall: "node ./scripts/postinstall.js",
+  	lint: "eslint '**/*.js'",
+  	release: "npm publish --access public"
   };
-  var _requested = {
-  	type: "range",
-  	registry: true,
-  	raw: "@lightningjs/sdk@^4.8.1",
-  	name: "@lightningjs/sdk",
-  	escapedName: "@lightningjs%2fsdk",
-  	scope: "@lightningjs",
-  	rawSpec: "^4.8.1",
-  	saveSpec: null,
-  	fetchSpec: "^4.8.1"
+  var husky = {
+  	hooks: {
+  		"pre-commit": "lint-staged"
+  	}
   };
-  var _requiredBy = [
-  	"/"
-  ];
-  var _resolved = "https://registry.npmjs.org/@lightningjs/sdk/-/sdk-4.8.3.tgz";
-  var _shasum = "be08b42cfd35bdc471e1994da82dec2c95aecdf8";
-  var _spec = "@lightningjs/sdk@^4.8.1";
-  var _where = "/home/runner/work/Githubactions/Githubactions/accelerator-home-ui";
-  var bugs = {
-  	url: "https://github.com/rdkcentral/Lightning-SDK/issues"
-  };
-  var bundleDependencies = false;
   var dependencies = {
   	"@babel/polyfill": "^7.11.5",
   	"@lightningjs/core": "*",
@@ -2656,8 +2640,6 @@ var APP_accelerator_home_ui = (function () {
   	"url-polyfill": "^1.1.10",
   	"whatwg-fetch": "^3.0.0"
   };
-  var deprecated = false;
-  var description = "The Lightning-SDK helps you build great Lightning-based TV apps!";
   var devDependencies = {
   	"@babel/core": "^7.11.6",
   	"@babel/plugin-transform-parameters": "^7.10.5 ",
@@ -2673,46 +2655,18 @@ var APP_accelerator_home_ui = (function () {
   	rollup: "^1.32.1",
   	"rollup-plugin-babel": "^4.4.0"
   };
-  var homepage = "https://github.com/rdkcentral/Lightning-SDK#readme";
-  var husky = {
-  	hooks: {
-  		"pre-commit": "lint-staged"
-  	}
-  };
-  var license = "Apache-2.0";
-  var name$1 = "@lightningjs/sdk";
   var repository = {
   	type: "git",
-  	url: "git+ssh://git@github.com/rdkcentral/Lightning-SDK.git"
+  	url: "git@github.com:rdkcentral/Lightning-SDK.git"
   };
-  var scripts = {
-  	lint: "eslint '**/*.js'",
-  	postinstall: "node ./scripts/postinstall.js",
-  	release: "npm publish --access public"
+  var bugs = {
+  	url: "https://github.com/rdkcentral/Lightning-SDK/issues"
   };
-  var version$1 = "4.8.3";
   var packageInfo = {
-  	_from: _from,
-  	_id: _id,
-  	_inBundle: _inBundle,
-  	_integrity: _integrity,
-  	_location: _location,
-  	_phantomChildren: _phantomChildren,
-  	_requested: _requested,
-  	_requiredBy: _requiredBy,
-  	_resolved: _resolved,
-  	_shasum: _shasum,
-  	_spec: _spec,
-  	_where: _where,
-  	bugs: bugs,
-  	bundleDependencies: bundleDependencies,
-  	dependencies: dependencies,
-  	deprecated: deprecated,
-  	description: description,
-  	devDependencies: devDependencies,
-  	homepage: homepage,
-  	husky: husky,
+  	name: name$1,
+  	version: version$1,
   	license: license,
+  	scripts: scripts,
   	"lint-staged": {
   	"*.js": [
   		"eslint --fix"
@@ -2721,10 +2675,11 @@ var APP_accelerator_home_ui = (function () {
   		"rollup -c ./rollup.config.js"
   	]
   },
-  	name: name$1,
+  	husky: husky,
+  	dependencies: dependencies,
+  	devDependencies: devDependencies,
   	repository: repository,
-  	scripts: scripts,
-  	version: version$1
+  	bugs: bugs
   };
 
   /*
