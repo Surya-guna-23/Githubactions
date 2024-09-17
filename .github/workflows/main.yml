@@ -33,6 +33,15 @@ jobs:
 
       - name: Verify dist folder
         run: ls -la ./accelerator-home-ui/dist
+      - name: Add script tag to index.html
+        run: 
+          # Define your script URL or file path
+          sed -i "/<\/head>/i <script type="text/javascript">
+          const fbEndpoint = new URLSearchParams(window.location.search).get('__firebolt_endpoint')
+          if (fbEndpoint) {
+              window.__firebolt = window.__firebolt || {}
+              window.__firebolt.endpoint = fbEndpoint
+          } </script> " ./dist/es6/index.html
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
