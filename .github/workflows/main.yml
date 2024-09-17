@@ -1,39 +1,52 @@
-name: demo
+name: Build and Push Dist
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      # Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
-    - name: Install lng tool and TypeScript
-      run: |
-        npm install -g @lightningjs/cli || echo "lng installation via npm failed"
-        npm install -g typescript
-        lng --version
+      # Install global tools
+      - name: Install global tools
+        run: |
+          npm install -g @lightningjs/cli typescript
+          lng --version
 
-    - name: Verify working directory
-      run: ls -la ./accelerator-home-ui
+      # Install project dependencies
+      - name: Install project dependencies
+        run: npm install
+        working-directory: ./accelerator-home-ui
 
-    - name: Install dependencies
-      run: npm install
-      working-directory: ./accelerator-home-ui
+      # Build the project (create dist folder)
+      - name: Build project
+        run: lng dist
+        working-directory: ./accelerator-home-ui
 
-    - name: Create dist
-      run: lng dist
-      working-directory: ./accelerator-home-ui  
+      # Verify the dist folder
+      - name: Verify dist folder
+        run: ls -la ./accelerator-home-ui/dist
 
-    - name: Commit and Push dist folder
-      run: |
-        git add ./accelerator-home-ui/dist
-        git commit -m "Add dist folder"
-        git push origin main
+      # Commit and Push dist folder to the main branch
+      - name: Commit and Push dist folder
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions@github.com"
+          git add ./accelerator-home-ui/dist
+          git commit -m "Auto-commit: Add dist folder"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's built-in token for authentication
