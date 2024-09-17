@@ -3,7 +3,7 @@
  * SDK version: 4.8.3
  * CLI version: 2.14.2
  *
- * Generated: Tue, 17 Sep 2024 05:34:23 GMT
+ * Generated: Tue, 17 Sep 2024 05:49:24 GMT
  */
 
 var APP_accelerator_home_ui = (function () {
