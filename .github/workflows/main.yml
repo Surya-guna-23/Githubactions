@@ -15,6 +15,12 @@ jobs:
       with:
         node-version: '14'
 
+    - name: Install lng tool and TypeScript
+      run: |
+        npm install -g @lightningjs/cli || echo "lng installation via npm failed"
+        npm install -g typescript
+        lng --version
+
     - name: Verify working directory
       run: ls -la ./accelerator-home-ui
 
