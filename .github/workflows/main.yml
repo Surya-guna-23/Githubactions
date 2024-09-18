@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Remove existing dist folder
+        run: |
+          test -d "./accelerator-home-ui/dist" && rm -rf "./accelerator-home-ui/dist"
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -33,15 +37,16 @@ jobs:
 
       - name: Verify dist folder
         run: ls -la ./accelerator-home-ui/dist
+
       - name: Add script tag to index.html
-        run: 
-          # Define your script URL or file path
-          sed -i "/<\/head>/i <script type="text/javascript">
-          const fbEndpoint = new URLSearchParams(window.location.search).get('__firebolt_endpoint')
-          if (fbEndpoint) {
-              window.__firebolt = window.__firebolt || {}
-              window.__firebolt.endpoint = fbEndpoint
-          } </script> " ./accelerator-home-ui/dist/es6/index.html
+        run: |
+          sed -i "/<\/head>/i <script type=\"text/javascript\"> \
+          const fbEndpoint = new URLSearchParams(window.location.search).get('__firebolt_endpoint'); \
+          if (fbEndpoint) { \
+              window.__firebolt = window.__firebolt || {}; \
+              window.__firebolt.endpoint = fbEndpoint; \
+          } \
+          </script>" ./accelerator-home-ui/dist/es6/index.html
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
