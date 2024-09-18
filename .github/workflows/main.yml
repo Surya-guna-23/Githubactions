@@ -53,6 +53,9 @@ jobs:
           } \
           </script>" ./accelerator-home-ui/dist/es6/index.html
 
+      - name: to move the content 
+        run: mv ./accelerator-home-ui/dist/es6 ./accelerator-home-ui/dist
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
