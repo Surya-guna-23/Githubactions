@@ -16,6 +16,10 @@ jobs:
       - name: Remove existing dist folder
         run: |
           test -d "./accelerator-home-ui/dist" && rm -rf "./accelerator-home-ui/dist"
+          
+      - name: confirming the dist removal
+        run: |
+          test -d "./accelerator-home-ui/dist" && echo "exist" || echo "Notexist"
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
