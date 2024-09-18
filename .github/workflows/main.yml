@@ -15,13 +15,8 @@ jobs:
 
       - name: Remove existing dist folder
         run: |
-          test -d "./accelerator-home-ui/dist" && echo "exist" || echo "Notexist"
           test -d "./accelerator-home-ui/dist" && rm -rf "./accelerator-home-ui/dist"
-          
-      - name: confirming the dist removal
-        run: |
-          test -d "./accelerator-home-ui/dist" && echo "exist" || echo "Notexist"
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -40,8 +35,8 @@ jobs:
         run: lng dist
         working-directory: ./accelerator-home-ui
 
-      - name: Verify dist folder
-        run: ls -la ./accelerator-home-ui/dist
+      - name: verify dist
+        run:  test -d "./accelerator-home-ui/dist" && echo "exist" || echo "Not exist"
 
       - name: Add script tag to index.html
         run: |
@@ -53,15 +48,9 @@ jobs:
           } \
           </script>" ./accelerator-home-ui/dist/es6/index.html
 
-      - name: to verify es6 
-        run: test -d "./accelerator-home-ui/dist/es6" && ls -la ./accelerator-home-ui/dist/es6 || echo "Notexist"
-
       - name: to move dist 
         run: mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
         
-      - name: to verify es6 
-        run: test -d "./accelerator-home-ui/dist/es6" && ls -la ./accelerator-home-ui/dist/es6 || echo "Notexist"
-
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
