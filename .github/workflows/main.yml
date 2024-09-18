@@ -53,13 +53,14 @@ jobs:
           } \
           </script>" ./accelerator-home-ui/dist/es6/index.html
 
-      - name: to move the content 
+      - name: to verify es6 
         run: test -d "./accelerator-home-ui/dist/es6" && ls -la ./accelerator-home-ui/dist/es6 || echo "Notexist"
 
+      - name: to move dist 
+        run: mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
+        
       - name: to verify es6 
-        run: 
-          mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
-          test -d "./accelerator-home-ui/dist/es6" && ls -la ./accelerator-home-ui/dist/es6 || echo "Notexist"
+        run: test -d "./accelerator-home-ui/dist/es6" && ls -la ./accelerator-home-ui/dist/es6 || echo "Notexist"
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
