@@ -3,7 +3,7 @@
  * SDK version: 4.8.3
  * CLI version: 2.14.2
  *
- * Generated: Wed, 18 Sep 2024 14:21:59 GMT
+ * Generated: Fri, 20 Sep 2024 12:37:32 GMT
  */
 
 var APP_accelerator_home_ui = (function () {
@@ -40816,33 +40816,27 @@ preferredAudioLanguages:   preferredAudioLanguages$1
     }
   }
 
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  function asyncGeneratorStep(n, t, e, r, o, a, c) {
       try {
-          var info = gen[key](arg);
-          var value = info.value;
-      } catch (error) {
-          reject(error);
-          return;
+          var i = n[a](c), u = i.value;
+      } catch (n) {
+          return void e(n);
       }
-      if (info.done) {
-          resolve(value);
-      } else {
-          Promise.resolve(value).then(_next, _throw);
-      }
+      i.done ? t(u) : Promise.resolve(u).then(r, o);
   }
 
-  function _asyncToGenerator(fn) {
+  function _asyncToGenerator(n) {
       return function() {
-          var self = this, args = arguments;
-          return new Promise((function(resolve, reject) {
-              var gen = fn.apply(self, args);
-              function _next(value) {
-                  asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+          var t = this, e = arguments;
+          return new Promise((function(r, o) {
+              var a = n.apply(t, e);
+              function _next(n) {
+                  asyncGeneratorStep(a, r, o, _next, _throw, "next", n);
               }
-              function _throw(err) {
-                  asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+              function _throw(n) {
+                  asyncGeneratorStep(a, r, o, _next, _throw, "throw", n);
               }
-              _next(undefined);
+              _next(void 0);
           }));
       };
   }
@@ -40870,35 +40864,29 @@ preferredAudioLanguages:   preferredAudioLanguages$1
       return e;
   }
 
-  function _defineProperty$1(obj, key, value) {
-      key = _toPropertyKey$1(key);
-      if (key in obj) {
-          Object.defineProperty(obj, key, {
-              value: value,
-              enumerable: true,
-              configurable: true,
-              writable: true
-          });
-      } else {
-          obj[key] = value;
-      }
-      return obj;
+  function _defineProperty$1(e, r, t) {
+      return (r = _toPropertyKey$1(r)) in e ? Object.defineProperty(e, r, {
+          value: t,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0
+      }) : e[r] = t, e;
   }
 
-  function _toPropertyKey$1(arg) {
-      var key = _toPrimitive$1(arg, "string");
-      return typeof key === "symbol" ? key : String(key);
+  function _toPropertyKey$1(t) {
+      var i = _toPrimitive$1(t, "string");
+      return "symbol" == typeof i ? i : i + "";
   }
 
-  function _toPrimitive$1(input, hint) {
-      if (typeof input !== "object" || input === null) return input;
-      var prim = input[Symbol.toPrimitive];
-      if (prim !== undefined) {
-          var res = prim.call(input, hint || "default");
-          if (typeof res !== "object") return res;
+  function _toPrimitive$1(t, r) {
+      if ("object" != typeof t || !t) return t;
+      var e = t[Symbol.toPrimitive];
+      if (void 0 !== e) {
+          var i = e.call(t, r || "default");
+          if ("object" != typeof i) return i;
           throw new TypeError("@@toPrimitive must return a primitive value.");
       }
-      return (hint === "string" ? String : Number)(input);
+      return ("string" === r ? String : Number)(t);
   }
 
   class Logger {
@@ -41313,7 +41301,7 @@ preferredAudioLanguages:   preferredAudioLanguages$1
 
   function watchForUpdates(_ref2) {
       var _element$__core;
-      var {element: element, watchProps: watchProps = [], sideEffect: sideEffect = (() => {})} = _ref2;
+      var {element: element, watchProps: watchProps = [], sideEffect: sideEffect = () => {}} = _ref2;
       if (!(element !== null && element !== void 0 && element.isElement)) {
           loggerInstance.error("watchForUpdates: Expected a Lightning Element passed to element parameter, received ".concat(typeof element));
       }
@@ -43984,6 +43972,8 @@ preferredAudioLanguages:   preferredAudioLanguages$1
       iconHeight: theme.spacer.xxl + theme.spacer.xs,
       contentSpacing: theme.spacer.md,
       marginBottom: 0,
+      strikethroughRatio: .08,
+      strikethroughColor: theme.color.textNeutral,
       textStyle: _objectSpread({}, theme.typography.body1),
       maxLines: 1,
       justify: "flex-start"
@@ -44334,6 +44324,7 @@ preferredAudioLanguages:   preferredAudioLanguages$1
       logoHeight: theme.typography.body3.lineHeight,
       logoPadding: theme.spacer.lg,
       detailsTextStyle: theme.typography.body3,
+      subtitleTextStyle: theme.typography.body3,
       titleTextStyle: _objectSpread(_objectSpread({}, theme.typography.headline1), {}, {
           maxLines: 1
       }),
@@ -44354,6 +44345,9 @@ preferredAudioLanguages:   preferredAudioLanguages$1
       neutral: {
           titleTextStyle: {
               textColor: theme.color.textNeutral
+          },
+          subtitleTextStyle: {
+              textColor: theme.color.textNeutralSecondary
           },
           detailsTextStyle: {
               textColor: theme.color.textNeutral
@@ -44379,6 +44373,9 @@ preferredAudioLanguages:   preferredAudioLanguages$1
           titleTextStyle: {
               textColor: theme.color.textInverse
           },
+          subtitleTextStyle: {
+              textColor: theme.color.textInverseSecondary
+          },
           detailsTextStyle: {
               textColor: theme.color.textInverse
           },
@@ -44388,6 +44385,9 @@ preferredAudioLanguages:   preferredAudioLanguages$1
           mode: {
               disabled: {
                   titleTextStyle: {
+                      textColor: theme.color.textNeutralDisabled
+                  },
+                  subtitleTextStyle: {
                       textColor: theme.color.textNeutralDisabled
                   },
                   detailsTextStyle: {
@@ -44402,6 +44402,9 @@ preferredAudioLanguages:   preferredAudioLanguages$1
       brand: {
           titleTextStyle: {
               textColor: theme.color.textNeutral
+          },
+          subtitleTextStyle: {
+              textColor: theme.color.textNeutralSecondary
           },
           detailsTextStyle: {
               textColor: theme.color.textNeutral
