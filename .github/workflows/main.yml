@@ -2,8 +2,8 @@ name: Build and Push Dist
 
 on:
   push:
-    branches:
-      - main
+    #branches:
+     # - main
     tags:
      - '*'
      
@@ -53,8 +53,11 @@ jobs:
       - name: to move dist 
         run: mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
         
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Replaced dist folder auto commit from trigger using stefanz
-          branch: main
+      - name: Deploy to local server
+        env:
+          SERVER_URL:
+            http://192.168.1.12:8081/
+              # Adjust this URL
+        run: |
+          # Using curl to upload the build files
+          curl -X POST -F "file=@./accelerator-home-ui/dist" $SERVER_URL
