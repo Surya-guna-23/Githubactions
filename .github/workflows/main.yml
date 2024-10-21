@@ -67,3 +67,16 @@ jobs:
           else
             echo "error occured location not found:"
           fi
+          
+      - name: Set up JFrog CLI
+        uses: jfrog/setup-jfrog-cli-action@v1
+        with:
+          version: latest
+
+      - name: Configure JFrog CLI
+        run: |
+          jfrog rt config --url ${{ secrets.ARTIFACTORY_URL }} --apikey ${{ secrets.ARTIFACTORY_API_KEY }}
+          
+      - name: Upload dist to Artifactory
+        run: |
+          jfrog rt u "./accelerator-home-ui/dist/*" "${SET_URL}" --flat=true
