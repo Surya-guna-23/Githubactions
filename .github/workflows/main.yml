@@ -57,3 +57,12 @@ jobs:
       - name: get reference name
         run: echo " Reference name :${{ github.ref_name }}"
         
+      - name: Identify if triggered by a branch or tag
+        run: |
+          if [[ "${{ github.ref }}" == refs/heads/* ]]; then
+            echo "Triggered by branch: ${{github.ref}}"
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "Triggered by tag: ${GITHUB_REF#refs/tags/}"
+          else
+            echo "Triggered by unknown source: ${GITHUB_REF}"
+          fi
