@@ -51,5 +51,5 @@ jobs:
         run: mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
         
       - name: get reference name
-        run: echo ${{ github.ref_name }}
+        run: echo " Reference name :${{ github.ref_name }}"
         
