@@ -59,10 +59,11 @@ jobs:
         
       - name: Identify if triggered by a branch or tag
         run: |
-          if [[ "${{ github.ref }}" == refs/heads/* ]]; then
-            echo "Triggered by branch: ${{github.ref}}"
-          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
-            echo "Triggered by tag: ${GITHUB_REF#refs/tags/}"
+          TRIGGERED_HEAD=${GITHUB_REF#refs/}
+          if [${TRIGGERED_HEAD} == "heads/*"]; then
+           SET_URL = "${SERVER_BASE_URL}/${{github.ref_name}}/"
+          elif [${TRIGGERED_HEAD} == "tags/*"]; then
+           SET_URL = "${SERVER_BASE_URL}/releases/${{github.ref_name}}/"
           else
-            echo "Triggered by unknown source: ${GITHUB_REF}"
+            echo "error occured location not found:"
           fi
