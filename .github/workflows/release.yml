@@ -45,15 +45,5 @@ jobs:
       - name: Print the file
         run: cat ./accelerator-home-ui/dist/index.html
             
-       
-        
-      - name: Identify if triggered by a branch or tag
-        run: |
-          TRIGGERED_HEAD=${GITHUB_REF#refs/}
-          if [${TRIGGERED_HEAD} == "heads/*"]; then
-           SET_URL = "${SERVER_BASE_URL}/${{github.ref_name}}/"
-          elif [${TRIGGERED_HEAD} == "tags/*"]; then
-           SET_URL = "${SERVER_BASE_URL}/releases/${{github.ref_name}}/"
-          else
-            echo "error occured location not found:"
-          fi
+      - name: Set url for tag
+        run: SET_URL = "${SERVER_BASE_URL}/releases/${{github.ref_name}}/"
