@@ -7,5 +7,5 @@ if test -d "./accelerator-home-ui/dist/"; then
                   window.__firebolt = window.__firebolt || {}; \
                   window.__firebolt.endpoint = fbEndpoint; \
               } \
-    </script>" ./accelerator-home-ui/dist/index.html
+    </script>" ./accelerator-home-ui/dist/es6/index.html
 fi
