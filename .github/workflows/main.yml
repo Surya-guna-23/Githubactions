@@ -51,3 +51,4 @@ jobs:
 
       - name: to move dist 
         run: mv ./accelerator-home-ui/dist/es6/* ./accelerator-home-ui/dist
+
