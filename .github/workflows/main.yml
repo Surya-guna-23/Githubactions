@@ -33,6 +33,7 @@ jobs:
 
       - name: Remove existing dist folder
         run: |
+          echo "removing the dist"
           test -d "./accelerator-home-ui/dist" && rm -rf "./accelerator-home-ui/dist"
       
       - name: Build project
