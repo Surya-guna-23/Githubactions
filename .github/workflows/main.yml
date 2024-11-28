@@ -51,5 +51,5 @@ jobs:
        
       - name: To print the directory
         run: |
-          echo"printing the directory"
+          echo "printing the directory"
           ls -as ./accelerator-home-ui/dist
